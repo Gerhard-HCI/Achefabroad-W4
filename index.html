@@ -110,12 +110,37 @@ button{font-family:inherit;cursor:pointer}
 .iblk-t{font-size:13px;color:var(--ink-mid);line-height:1.6}
 footer{text-align:center;padding:22px 16px 36px;color:var(--ink-muted);font-size:12px;line-height:1.9}
 footer a{color:var(--brand)}
+
+    /* ── TAXI CARD — shown to the driver (hex only: iOS Safari) ── */
+    .btn.tx-btn{background-color:#FFF6E0!important;color:#8A5E12!important;border-color:rgba(176,124,34,.35)!important;font-weight:600}
+    .tx-ov{position:fixed;top:0;left:0;right:0;bottom:0;background-color:rgba(10,15,30,.72);z-index:100000;display:none;align-items:flex-end;justify-content:center}
+    .tx-ov.on{display:flex}
+    .tx-sheet{background-color:#FAF8F4;width:100%;max-width:620px;max-height:92vh;border-radius:22px 22px 0 0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px 18px calc(24px + env(safe-area-inset-bottom));animation:txUp .3s cubic-bezier(.16,1,.3,1)}
+    @keyframes txUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+    .tx-grab{width:38px;height:4px;background-color:#C5CBD6;border-radius:99px;margin:0 auto 14px}
+    .tx-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:14px}
+    .tx-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:500;color:#141B2D;line-height:1.2}
+    .tx-title-jp{font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP',serif;font-size:15px;color:#3A4866;margin-top:3px}
+    .tx-close{width:40px;height:40px;border-radius:50%;flex-shrink:0;font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center;background-color:#FFFFFF!important;color:#55607A!important;border:1px solid #E2E6EF!important}
+    .tx-card{background-color:#FFFFFF;border-radius:16px;padding:24px 18px;text-align:center;border:1px solid #E2E6EF}
+    .tx-to{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#55607A;margin-bottom:12px}
+    .tx-name{font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP',serif;font-size:30px;line-height:1.3;color:#000000;font-weight:600;margin-bottom:6px}
+    .tx-name-en{font-size:13px;color:#55607A;margin-bottom:18px}
+    .tx-addr{font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP',serif;font-size:25px;line-height:1.65;color:#000000;font-weight:600;padding:16px 8px;border-top:2px solid #000000;border-bottom:2px solid #000000;word-break:break-word}
+    .tx-ask{font-family:'Hiragino Mincho ProN','Yu Mincho','Noto Serif JP',serif;font-size:20px;color:#000000;margin-top:18px;line-height:1.5}
+    .tx-ask-en{font-size:12px;color:#55607A;margin-top:5px;font-style:italic}
+    .tx-acts{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+    .tx-act{flex:1 1 30%;min-height:46px;padding:11px 8px;border-radius:10px;font-size:13px;font-weight:600;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:5px;border:1px solid #D6DCE8!important;background-color:#FFFFFF!important;color:#2A3450!important}
+    .tx-act.pri{background-color:#8B3210!important;color:#FFFFFF!important;border-color:#8B3210!important}
+    .tx-act.go{background-color:#FFF6E0!important;color:#8A5E12!important;border-color:rgba(176,124,34,.35)!important}
+    .tx-foot{font-size:11.5px;color:#55607A;text-align:center;margin-top:16px;padding-top:12px;border-top:1px solid #E2E6EF;line-height:1.6}
+    .tx-foot em{color:#7A869E}
 </style>
 </head>
 <body>
 
 <header id="hdr">
-  <div><div class="hdr-name">Achefabroad</div><div class="hdr-sub">Tokyo · Tour 4</div></div>
+  <div><div class="hdr-name">Achefabroad</div><div class="hdr-sub">Tokyo · Tour 4 · v2</div></div>
   <div><div id="clock">--:--</div><div id="trip-lbl">Loading…</div></div>
 </header>
 
@@ -326,6 +351,37 @@ function copyAddr(name){
   try{navigator.clipboard.writeText(txt).catch(function(){prompt('Address:',txt);});}catch(e){prompt('Address:',txt);}
 }
 
+/* ═══ JAPANESE PLACE DIRECTORY · taxi card (keyed by stop name) ═══
+   addr = address in Japanese as Google Maps shows it; cross-checked against Google Places. */
+var JA_DIR = {
+  'Abajo':{ name:'Abajo（アバッホ）', en:'Abajo', addr:'〒102-0085 東京都千代田区六番町4-3 地下1階', tel:'+81353571933' },
+  'Nakahara':{ name:'炭火焼肉 なかはら', en:'Sumibi Yakiniku Nakahara', addr:'〒102-0085 東京都千代田区六番町4-3 GEMS市ヶ谷 9F', tel:'+815032042987' },
+  'Sushi Arai':{ name:'鮨 あらい', en:'Sushi Arai', addr:'〒104-0061 東京都中央区銀座8-10-2 ルアンビル 地下1F', tel:'+81362645855' },
+  'Toyosu Fish Market':{ name:'豊洲市場', en:'Toyosu Market', addr:'〒135-0061 東京都江東区豊洲6-6-1', tel:'' },
+  'Tonkatsu Kenshin':{ name:'とんかつ憲進', en:'Tonkatsu Kenshin', addr:'〒162-0825 東京都新宿区神楽坂3-1-23 Ami神楽坂2階', tel:'+81368269862' },
+  'Sukiyaki Hiyama':{ name:'すき焼 割烹 日山', en:'Sukiyaki Hiyama', addr:'〒103-0013 東京都中央区日本橋人形町2-5-1', tel:'+81336662901' },
+  'Train to Shizuoka':{ name:'東京駅', en:'Tokyo Station', addr:'〒100-0005 東京都千代田区丸の内1-9-1', tel:'' },
+  'Naruse':{ name:'成生', en:'Tempura Naruse', addr:'〒420-0861 静岡県静岡市葵区丸山町12-2', tel:'+81542957791' },
+  'Menya Shichisai':{ name:'麺や 七彩', en:'Menya Shichisai', addr:'〒104-0032 東京都中央区八丁堀2-13-2', tel:'+81355669355' },
+  'Torichatarou':{ name:'とり茶太郎', en:'Tori Chataro', addr:'〒150-0032 東京都渋谷区鶯谷町7-12 TAKビル 1F', tel:'+81364160364' },
+  'Chez Calvert':{ name:'シェ・カルヴェ', en:'Chez Calvert', addr:'〒106-0041 東京都港区麻布台1-1-2 ヒルズ レジデンスB 2階', tel:'+81345003505' },
+  'Sushi Mizukami':{ name:'鮨 みずかみ', en:'Sushi Mizukami', addr:'〒102-0082 東京都千代田区一番町3-8', tel:'+81332300326' }
+};
+function findStop(n){var r=null;DAYS.forEach(function(d){d.stops.forEach(function(s){if(s.name===n)r=s;});});return r;}
+window.showTaxi=function(n){
+  var j=JA_DIR[n];if(!j)return;var s=findStop(n);
+  var maps=s&&s.url?s.url:'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(j.addr);
+  document.getElementById('tx-body').innerHTML='<div class="tx-card"><div class="tx-to">行き先 · DESTINATION</div>'
+    +'<div class="tx-name">'+esc(j.name)+'</div><div class="tx-name-en">'+esc(j.en)+'</div>'
+    +'<div class="tx-addr">'+esc(j.addr)+'</div><div class="tx-ask">ここまでお願いします。</div><div class="tx-ask-en">Please take me here.</div></div>'
+    +'<div class="tx-acts"><a href="'+maps+'" target="_blank" rel="noopener" class="tx-act pri">📍 Maps</a>'
+    +(j.tel?'<a href="tel:'+j.tel+'" class="tx-act">📞 Call venue</a>':'')
+    +'<a href="https://go.mo-t.com/" target="_blank" rel="noopener" class="tx-act go">🚕 GO Taxi</a></div>';
+  document.getElementById('tx-ov').classList.add('on');
+};
+window.closeTaxi=function(){var o=document.getElementById('tx-ov');if(o)o.classList.remove('on');};
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeTaxi();});
+
 function renderStop(s){
   return '<div class="stop">'
     +'<div class="s-hdr"><span class="s-time">'+s.time+'</span><span class="s-type">'+s.type+'</span>'+(s.requested?'<span class="s-req">Awaiting confirmation</span>':'')+'</div>'
@@ -336,6 +392,7 @@ function renderStop(s){
     +'<div class="s-acts">'
     +'<a href="'+s.url+'" target="_blank" class="btn btn-f">📍 Map</a>'
     +'<a href="'+s.url+'" target="_blank" class="btn btn-o">🧭 Navigate</a>'
+    +(JA_DIR[s.name]?'<button type="button" class="btn btn-o tx-btn" onclick="showTaxi(this.dataset.n)" data-n="'+s.name+'" aria-label="Show the address in Japanese to a taxi driver">🚕 Taxi</button>':'')
     +'<button class="btn btn-o" onclick="copyAddr(this.dataset.n)" data-n="'+s.name+'">📋 Copy</button>'
     +'</div></div>';
 }
@@ -396,5 +453,9 @@ function tick(){
 })();
 </script>
 
+<div class="tx-ov" id="tx-ov" onclick="if(event.target===this)closeTaxi()"><div class="tx-sheet" role="dialog" aria-modal="true" aria-label="Show the driver"><div class="tx-grab"></div><div class="tx-head"><div><div class="tx-title">Show the driver</div><div class="tx-title-jp">タクシーの運転手にお見せください</div></div><button type="button" class="tx-close" onclick="closeTaxi()" aria-label="Close">&times;</button></div><div id="tx-body"></div><div class="tx-foot">住所は Google マップの日本語表記のとおりです。<br><em>Address as Google Maps shows it in Japanese.</em></div></div></div>
+<script>
+function esc(s){if(s===null||s===undefined)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+</script>
 </body>
 </html>

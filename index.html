@@ -174,12 +174,20 @@ footer a{color:var(--brand)}
 .disc-city-pill.active{background-color:#B84A14 !important;color:#FFFFFF !important}
 .disc-scherrer-cta{background-color:#D9A066 !important;color:#3B1A0E !important}
 
+.disc-card-head{display:flex;justify-content:space-between;align-items:baseline}
+.disc-count{font-size:11px;color:#9B6A50}
+#disc .disc-item{display:block;padding:12px}
+.disc-item-area{font-size:11px;color:#B84A14;margin-top:2px;letter-spacing:.03em}
+.disc-item-desc{font-size:12.5px;color:#5C3020;line-height:1.55;margin-top:6px}
+.disc-item-btns{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.disc-btn{display:inline-flex;align-items:center;gap:4px;background-color:#FFFFFF !important;color:#B84A14 !important;border:1px solid #EDD5C0 !important;border-radius:8px;padding:9px 12px;font-size:12px;font-weight:600;text-decoration:none;cursor:pointer;font-family:inherit}
+.disc-btn.pri{background-color:#B84A14 !important;color:#FFFFFF !important;border-color:#B84A14 !important}
 </style>
 </head>
 <body>
 
 <header id="hdr">
-  <div><div class="hdr-name">Achefabroad</div><div class="hdr-sub">Tokyo · Tour 4 · v4</div></div>
+  <div><div class="hdr-name">Achefabroad</div><div class="hdr-sub">Tokyo · Tour 4 · v5</div></div>
   <div><div id="clock">--:--</div><div id="trip-lbl">Loading…</div></div>
 </header>
 
@@ -395,6 +403,37 @@ function copyAddr(name){
 /* ═══ JAPANESE PLACE DIRECTORY · taxi card (keyed by stop name) ═══
    addr = address in Japanese as Google Maps shows it; cross-checked against Google Places. */
 var JA_DIR = {
+  /* Discover */
+  "Senso-ji":{"name": "浅草寺", "en": "Senso-ji", "addr": "〒111-0032 東京都台東区浅草2-3-1", "tel": "+81338420181", "pid": "ChIJ8T1GpMGOGGARDYGSgpooDWw"},
+  "Meiji Jingu":{"name": "明治神宮", "en": "Meiji Jingu", "addr": "〒151-8557 東京都渋谷区代々木神園町1-1", "tel": "+81333795511", "pid": "ChIJ5SZMmreMGGARcz8QSTiJyo8"},
+  "Meiji Jingu Gaien Ginkgo Avenue":{"name": "明治神宮外苑 いちょう並木", "en": "Meiji Jingu Gaien Ginkgo Avenue", "addr": "〒107-0061 東京都港区北青山2-7", "tel": "+81334010312", "pid": "ChIJ_XxY_JqMGGARACDk4sraoN8"},
+  "Nezu Museum":{"name": "根津美術館", "en": "Nezu Museum", "addr": "〒107-0062 東京都港区南青山6-5-1", "tel": "+81334002536", "pid": "ChIJxU48-2OLGGARHMtB5RAhytA"},
+  "Rikugien Garden":{"name": "六義園", "en": "Rikugien Garden", "addr": "〒113-0021 東京都文京区本駒込6-16-3", "tel": "+81339412222", "pid": "ChIJYUQ-972NGGAR5W_2E0N3SHY"},
+  "Shinjuku Gyoen":{"name": "新宿御苑", "en": "Shinjuku Gyoen", "addr": "〒160-0014 東京都新宿区内藤町11", "tel": "+81333500151", "pid": "ChIJPyOTG8KMGGARh_IXobWxHmo"},
+  "Imperial Palace East Gardens":{"name": "皇居東御苑（大手門）", "en": "Imperial Palace East Gardens", "addr": "〒100-8111 東京都千代田区千代田1-1", "tel": "+81332132050", "pid": "ChIJPfFaQhOMGGAR-QPbNQoAG6M"},
+  "Hamarikyu Gardens":{"name": "浜離宮恩賜庭園", "en": "Hamarikyu Gardens", "addr": "〒104-0046 東京都中央区浜離宮庭園1-1", "tel": "+81335410200", "pid": "ChIJwfegutyLGGARGjiY-L2eSps"},
+  "Kiyosumi Garden":{"name": "清澄庭園", "en": "Kiyosumi Garden", "addr": "〒135-0024 東京都江東区清澄3-3-9", "tel": "+81336415892", "pid": "ChIJ_SvuyD-JGGARUQZhJInwMIc"},
+  "Tokyo National Museum":{"name": "東京国立博物館", "en": "Tokyo National Museum", "addr": "〒110-8712 東京都台東区上野公園13-9", "tel": "+815055418600", "pid": "ChIJEX3XFIOOGGAR3XdJvRjWLyM"},
+  "Mori Art Museum":{"name": "森美術館", "en": "Mori Art Museum", "addr": "〒106-6150 東京都港区六本木6-10-1 六本木ヒルズ森タワー53階", "tel": "", "pid": "ChIJg5RCD3eLGGAR6dbIHRM98w8"},
+  "teamLab Planets":{"name": "チームラボプラネッツ TOKYO", "en": "teamLab Planets", "addr": "〒135-0061 東京都江東区豊洲6-1-16", "tel": "", "pid": "ChIJSeco5wiJGGARItbTS8lQ5G0"},
+  "Shibuya Sky":{"name": "SHIBUYA SKY（渋谷スクランブルスクエア）", "en": "Shibuya Sky", "addr": "〒150-6145 東京都渋谷区渋谷2-24-12", "tel": "+81342210229", "pid": "ChIJ4Rr2JWiLGGARcyRSHuZ-9G8"},
+  "Yanaka Ginza":{"name": "谷中銀座商店街", "en": "Yanaka Ginza", "addr": "〒110-0001 東京都台東区谷中3-13-1", "tel": "", "pid": "ChIJPYwFnNGNGGARYEeXwiYQPe8"},
+  "Gotoku-ji":{"name": "豪徳寺", "en": "Gotoku-ji", "addr": "〒154-0021 東京都世田谷区豪徳寺2-24-7", "tel": "+81334261437", "pid": "ChIJVVUBmZ_zGGARrEy-Ua3psAY"},
+  "Kama-asa":{"name": "釜浅商店", "en": "Kama-asa", "addr": "〒111-0036 東京都台東区松が谷2-24-1", "tel": "+81338419357", "pid": "ChIJ___D5JWOGGARopAlYm8Rv2I"},
+  "Nihonbashi Kiya":{"name": "木屋 日本橋本店", "en": "Nihonbashi Kiya", "addr": "〒103-0022 東京都中央区日本橋室町2-2-1 コレド室町1 1F", "tel": "+81332410110", "pid": "ChIJn_6cvVWJGGARuTqsSWCXwKs"},
+  "Kayanoya":{"name": "茅乃舎 コレド室町店", "en": "Kayanoya", "addr": "〒103-0022 東京都中央区日本橋室町1-5-5 コレド室町3 1F", "tel": "+81362623170", "pid": "ChIJj_vpoVWJGGARXSGgblEGYv4"},
+  "Akomeya Tokyo":{"name": "AKOMEYA TOKYO 銀座本店", "en": "Akomeya Tokyo", "addr": "〒104-0061 東京都中央区銀座2-2-6", "tel": "+81367580270", "pid": "ChIJYQbm-eSLGGAR3OKmAIG9Yz4"},
+  "Ippodo Tea":{"name": "一保堂茶舗", "en": "Ippodo Tea", "addr": "〒100-6590 東京都千代田区丸の内1-5-1 新丸の内ビルディング B1F", "tel": "+81362120202", "pid": "ChIJxzhzE4GLGGAREm08ztodQgg"},
+  "Isetan Shinjuku":{"name": "伊勢丹新宿店", "en": "Isetan Shinjuku", "addr": "〒160-0022 東京都新宿区新宿3-14-1", "tel": "+81333521111", "pid": "ChIJ9ztrpduMGGARte1BM8ccdIs"},
+  "Takumi":{"name": "たくみ", "en": "Takumi", "addr": "〒104-0061 東京都中央区銀座8-4-2 たくみビル1F・2F", "tel": "+81335712017", "pid": "ChIJNxnO0OiLGGARvSZSoNWUS_k"},
+  "Japan Traditional Crafts Aoyama Square":{"name": "伝統工芸 青山スクエア", "en": "Japan Traditional Crafts Aoyama Square", "addr": "〒107-0052 東京都港区赤坂8-1-22 1F", "tel": "+81357851301", "pid": "ChIJ91khboGMGGARBo42MbnQzg8"},
+  "Itoya":{"name": "銀座 伊東屋 本店", "en": "Itoya", "addr": "〒104-0061 東京都中央区銀座2-7-15", "tel": "+81335618311", "pid": "ChIJKQAKAOSLGGARwGhpOXWgfYo"},
+  "MUJI Ginza":{"name": "無印良品 銀座", "en": "MUJI Ginza", "addr": "〒104-0061 東京都中央区銀座3-3-5", "tel": "+81335381311", "pid": "ChIJfc-uOKqLGGAR-bVyIUWjtQo"},
+  "Dover Street Market Ginza":{"name": "ドーバー ストリート マーケット ギンザ", "en": "Dover Street Market Ginza", "addr": "〒104-0061 東京都中央区銀座6-9-5", "tel": "+81362285080", "pid": "ChIJCyrxGuaLGGARJWVsJlwEERU"},
+  "Beams Japan":{"name": "ビームス ジャパン", "en": "Beams Japan", "addr": "〒160-0022 東京都新宿区新宿3-32-6", "tel": "+81353687300", "pid": "ChIJUWbOAtuMGGARxbNeo0uzhuo"},
+  "Okura":{"name": "オクラ", "en": "Okura", "addr": "〒150-0033 東京都渋谷区猿楽町20-11", "tel": "+81334618511", "pid": "ChIJPWsOiE-LGGARIZ39rhGmJ-k"},
+  "Kapital":{"name": "キャピタル 恵比寿", "en": "Kapital", "addr": "〒150-0022 東京都渋谷区恵比寿南2-20-2 ガイア恵比寿ビル1F", "tel": "+81357253923", "pid": "ChIJ3X9evD-LGGARnvEnNUUnozA"},
+  "Daikanyama T-Site":{"name": "代官山 蔦屋書店", "en": "Daikanyama T-Site", "addr": "〒150-0033 東京都渋谷区猿楽町17-5 代官山T-SITE", "tel": "+81337702525", "pid": "ChIJgfjQvk-LGGARqVwq1_ra-dY"},
   'Abajo':{ name:'Abajo（アバッホ）', en:'Abajo', addr:'〒102-0085 東京都千代田区六番町4-3 地下1階', tel:'+81353571933' },
   'Nakahara':{ name:'炭火焼肉 なかはら', en:'Sumibi Yakiniku Nakahara', addr:'〒102-0085 東京都千代田区六番町4-3 GEMS市ヶ谷 9F', tel:'+815032042987' },
   'Sushi Arai':{ name:'鮨 あらい', en:'Sushi Arai', addr:'〒104-0061 東京都中央区銀座8-10-2 ルアンビル 地下1F', tel:'+81362645855' },
@@ -412,7 +451,7 @@ var JA_DIR = {
 function findStop(n){var r=null;DAYS.forEach(function(d){d.stops.forEach(function(s){if(s.name===n)r=s;});});return r;}
 window.showTaxi=function(n){
   var j=JA_DIR[n];if(!j)return;var s=findStop(n);
-  var maps=s&&s.url?s.url:'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(j.addr);
+  var maps=s&&s.url?s.url:(j.pid?'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(j.en)+'&query_place_id='+j.pid:'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(j.addr));
   document.getElementById('tx-body').innerHTML='<div class="tx-card"><div class="tx-to">行き先 · DESTINATION</div>'
     +'<div class="tx-name">'+esc(j.name)+'</div><div class="tx-name-en">'+esc(j.en)+'</div>'
     +'<div class="tx-addr">'+esc(j.addr)+'</div><div class="tx-ask">ここまでお願いします。</div><div class="tx-ask-en">Please take me here.</div></div>'
@@ -462,44 +501,10 @@ function tog(date){var c=document.getElementById('day-'+date);if(c)c.classList.t
 
 /* ═══ DISCOVER · ported from Nanette Levi 2026/11 ═══ */
 var DISCOVER = {
-  Tokyo:[
-    { cat:'Sightseeing', items:[
-      ['Senso-ji & Asakusa','Sensoji Asakusa Tokyo','Tokyo\'s oldest temple; Nakamise shopping street'],
-      ['Meiji Jingu','Meiji Jingu','Forest shrine beside Yoyogi Park'],
-      ['Shibuya Crossing & Shibuya Sky','Shibuya Sky','Iconic scramble + rooftop observation deck'],
-      ['teamLab (Planets / Borderless)','teamLab Planets Tokyo','Immersive digital-art museums'],
-      ['Imperial Palace East Gardens','Imperial Palace East Gardens','Former Edo Castle grounds & gardens'],
-      ['Tokyo Skytree','Tokyo Skytree','634 m tower; observation decks & Solamachi'],
-      ['Toyosu & Tsukiji Outer Market','Tsukiji Outer Market','Fish market & legendary street-food lanes'],
-      ['Shinjuku Gyoen','Shinjuku Gyoen','Expansive garden; superb autumn foliage'],
-      ['Nezu Museum','Nezu Museum Tokyo','Asian art & a serene strolling garden'],
-      ['Ueno Park & museums','Ueno Park','Tokyo National Museum, zoo, galleries']
-    ]},
-    { cat:'Food & Drink', items:[
-      ['Sushi','Sushi Ginza Tokyo','Toyosu counters to Ginza omakase (Saito, Sugita)'],
-      ['Tempura','Tempura Tokyo','Edomae tempura (Kondo, Mikawa Zezankyo)'],
-      ['Yakitori','Yakitori Tokyo','Omoide Yokocho to high-end (Torishiki)'],
-      ['Yakiniku & wagyu','Yakiniku Tokyo wagyu','Premium grilled wagyu (Yoroniku, Toraji)'],
-      ['Ramen','Ramen Tokyo','Every style; shoyu, tsukemen, tonkotsu'],
-      ['Kaiseki / haute Japanese','Kaiseki Tokyo','RyuGin, Ishikawa, Den — modern & classic'],
-      ['Depachika food halls','Isetan depachika','Basement gourmet halls (Isetan, Takashimaya)'],
-      ['Cocktail bars','Bar High Five Ginza','World-class bars (High Five, Star Bar, SG Club)'],
-      ['Unagi','Unagi Nodaiwa Tokyo','Eel specialists (Nodaiwa, Obana)'],
-      ['Soba','Soba Kanda Matsuya Tokyo','Handmade soba (Sarashina, Kanda Matsuya)']
-    ]},
-    { cat:'Shopping', items:[
-      ['Ginza','Ginza Tokyo','Luxury flagships; Ginza Six, Wako, Mitsukoshi'],
-      ['Isetan Shinjuku','Isetan Shinjuku','Flagship department store; famed depachika'],
-      ['Nihonbashi (Mitsukoshi/Takashimaya)','Nihonbashi Mitsukoshi','Historic department-store district'],
-      ['Omotesando & Aoyama','Omotesando','Fashion & architecture flagships'],
-      ['Daikanyama T-Site (Tsutaya)','Daikanyama Tsutaya','Design-led bookstore & lifestyle complex'],
-      ['Nakameguro','Nakameguro','Canal-side boutiques & cafes'],
-      ['Kappabashi Kitchen Town','Kappabashi Tokyo','Knives, kitchenware & sample food'],
-      ['Akihabara','Akihabara','Electronics, anime & hobby shops'],
-      ['Ginza Wako / Mikimoto','Ginza Wako','Landmark clock, watches & pearls'],
-      ['Miyashita Park / Shibuya Parco','Miyashita Park Shibuya','Rooftop park + fashion & lifestyle floors']
-    ]}
-  ]
+  Tokyo:{
+    sights:[{"name": "Senso-ji", "area": "Asakusa · temple", "desc": "Tokyo&rsquo;s oldest temple, through the Kaminarimon gate and up Nakamise. Go before 8 a.m. or after dusk, when the halls are lit and the crowds have gone.", "pid": "ChIJ8T1GpMGOGGARDYGSgpooDWw"}, {"name": "Meiji Jingu", "area": "Harajuku · shrine", "desc": "A cedar forest in the middle of the city and the shrine to the Meiji Emperor at its heart. The walk in under the great torii does as much as the shrine itself.", "pid": "ChIJ5SZMmreMGGARcz8QSTiJyo8"}, {"name": "Meiji Jingu Gaien Ginkgo Avenue", "area": "Aoyama · autumn ginkgo", "desc": "146 ginkgo trees forming a golden tunnel, at their peak in exactly the week you are here. Late afternoon light is best; the Icho festival stalls sit at the far end.", "pid": "ChIJ_XxY_JqMGGARACDk4sraoN8"}, {"name": "Nezu Museum", "area": "Minami-Aoyama · art & garden", "desc": "Kengo Kuma&rsquo;s bamboo-lined museum of tea-ceremony art, with a steep, mossy garden that turns red in early December. Closed Monday 30 Nov; book a timed ticket.", "pid": "ChIJxU48-2OLGGARHMtB5RAhytA"}, {"name": "Rikugien Garden", "area": "Komagome · Edo garden", "desc": "The finest Edo-period strolling garden in the city, built around poems. In late autumn the maples are lit up at night — the best evening garden in Tokyo.", "pid": "ChIJYUQ-972NGGAR5W_2E0N3SHY"}, {"name": "Shinjuku Gyoen", "area": "Shinjuku · national garden", "desc": "Japanese, French and English gardens in one huge park, with the last of the autumn colour in early December. Closed Mondays.", "pid": "ChIJPyOTG8KMGGARh_IXobWxHmo"}, {"name": "Imperial Palace East Gardens", "area": "Otemachi · Edo Castle", "desc": "The walls and moats of Edo Castle, with the keep foundations at the top for the view. Free. Closed Monday and Friday; enter by the Otemon gate.", "pid": "ChIJPfFaQhOMGGAR-QPbNQoAG6M"}, {"name": "Hamarikyu Gardens", "area": "Shiodome · tidal garden", "desc": "A shogun&rsquo;s duck-hunting garden with seawater ponds, framed by skyscrapers. Take matcha and wagashi at the teahouse on the pond — five minutes from Toyosu by water bus.", "pid": "ChIJwfegutyLGGARGjiY-L2eSps"}, {"name": "Kiyosumi Garden", "area": "Kiyosumi-Shirakawa · stone garden", "desc": "A quiet merchant&rsquo;s garden built from stones shipped in from all over Japan; cross the pond on the stepping stones. Pair it with the area&rsquo;s coffee roasters.", "pid": "ChIJ_SvuyD-JGGARUQZhJInwMIc"}, {"name": "Tokyo National Museum", "area": "Ueno · museum", "desc": "The greatest collection of Japanese art anywhere: swords, armour, lacquer, ceramics, scrolls. Give the Honkan two hours. Closed Monday 30 Nov.", "pid": "ChIJEX3XFIOOGGAR3XdJvRjWLyM"}, {"name": "Mori Art Museum", "area": "Roppongi Hills · contemporary art", "desc": "Serious contemporary shows on the 53rd floor, with Tokyo City View included. Open until 10 p.m. most nights (5 p.m. on Tuesdays).", "pid": "ChIJg5RCD3eLGGAR6dbIHRM98w8"}, {"name": "teamLab Planets", "area": "Toyosu · digital art", "desc": "Barefoot, knee-deep in water and light — far better than it sounds. Next door to Toyosu Market, so it fits the 1 December morning. Book ahead.", "pid": "ChIJSeco5wiJGGARItbTS8lQ5G0"}, {"name": "Shibuya Sky", "area": "Shibuya · rooftop", "desc": "The open-air roof above the Scramble Crossing. Book the sunset slot early and look for Fuji to the west on a clear evening.", "pid": "ChIJ4Rr2JWiLGGARcyRSHuZ-9G8"}, {"name": "Yanaka Ginza", "area": "Yanaka · old Tokyo", "desc": "The Tokyo that survived the war: a small shopping street, temples and wooden houses. Walk in from Nippori through Yanaka Cemetery.", "pid": "ChIJPYwFnNGNGGARYEeXwiYQPe8"}, {"name": "Gotoku-ji", "area": "Setagaya · temple", "desc": "The temple of the beckoning cat, with thousands of maneki-neko stacked beside the hall. A peaceful hour in a residential neighbourhood far from the tourist trail.", "pid": "ChIJVVUBmZ_zGGARrEy-Ua3psAY"}],
+    shops:[{"name": "Kama-asa", "area": "Kappabashi · knives & cookware", "desc": "The chef&rsquo;s shop on Kappabashi: knives, nambu-iron pans and hand-hammered tools, with one-to-one advice and free engraving. The single best stop on the street.", "pid": "ChIJ___D5JWOGGARopAlYm8Rv2I"}, {"name": "Nihonbashi Kiya", "area": "Nihonbashi · knives since 1792", "desc": "Knives, graters and scissors from a house older than the USA, with patient staff and sharpening service. More classic than Kappabashi, and just as good.", "pid": "ChIJn_6cvVWJGGARuTqsSWCXwKs"}, {"name": "Kayanoya", "area": "Nihonbashi · dashi", "desc": "The Fukuoka dashi house: kombu, katsuobushi and ready blends with nothing artificial, and a tasting of each stock. The gift every cook takes home.", "pid": "ChIJj_vpoVWJGGARXSGgblEGYv4"}, {"name": "Akomeya Tokyo", "area": "Ginza · rice & pantry", "desc": "Rice from every prefecture, milled to order, plus soy sauces, miso and handmade kitchenware upstairs. A good lunch counter too.", "pid": "ChIJYQbm-eSLGGAR3OKmAIG9Yz4"}, {"name": "Ippodo Tea", "area": "Marunouchi · tea", "desc": "Kyoto&rsquo;s 300-year-old tea house. Matcha is rationed (one can each) but the sencha and hojicha are superb; taste before you buy.", "pid": "ChIJxzhzE4GLGGAREm08ztodQgg"}, {"name": "Isetan Shinjuku", "area": "Shinjuku · department store", "desc": "The best depachika in Japan: wagyu, fruit, wagashi and bento in the basement, and a strong Japanese-design floor upstairs. Go hungry.", "pid": "ChIJ9ztrpduMGGARte1BM8ccdIs"}, {"name": "Takumi", "area": "Ginza · folk crafts", "desc": "The mingei shop founded by the folk-craft movement in 1933: pottery from the old kilns, lacquer, textiles, at honest prices. Closed Wednesdays.", "pid": "ChIJNxnO0OiLGGARvSZSoNWUS_k"}, {"name": "Japan Traditional Crafts Aoyama Square", "area": "Aoyama · crafts from all of Japan", "desc": "A curated gallery-shop of certified crafts from every prefecture — Arita porcelain, Tsubame copper, Edo glass — often with an artisan at work.", "pid": "ChIJ91khboGMGGARBo42MbnQzg8"}, {"name": "Itoya", "area": "Ginza · stationery", "desc": "Twelve floors of paper, pens and letterpress, with a café and a lettuce farm at the top. Nobody leaves empty-handed.", "pid": "ChIJKQAKAOSLGGARwGhpOXWgfYo"}, {"name": "MUJI Ginza", "area": "Ginza · flagship", "desc": "The global flagship, with food, homeware and a design gallery over many floors. The basement food hall has things you will never see abroad.", "pid": "ChIJfc-uOKqLGGAR-bVyIUWjtQo"}, {"name": "Dover Street Market Ginza", "area": "Ginza · fashion", "desc": "Rei Kawakubo&rsquo;s seven-floor concept store, with Comme des Garçons and the most interesting labels in Tokyo, all shown like an art installation.", "pid": "ChIJCyrxGuaLGGARJWVsJlwEERU"}, {"name": "Beams Japan", "area": "Shinjuku · Japanese design", "desc": "Five floors devoted only to things made in Japan: ceramics, denim, crafts, food, collaborations. The best one-stop gift shop in the city.", "pid": "ChIJUWbOAtuMGGARxbNeo0uzhuo"}, {"name": "Okura", "area": "Daikanyama · indigo", "desc": "Hand-dyed indigo and sashiko in an old wooden house that feels like a film set. Jackets, scarves and handkerchiefs made in Japan.", "pid": "ChIJPWsOiE-LGGARIZ39rhGmJ-k"}, {"name": "Kapital", "area": "Ebisu · denim", "desc": "Okayama denim gone wild — boro patchwork, kountry jackets, bandanas. Pricey and eccentric, and there is nothing else like it.", "pid": "ChIJ3X9evD-LGGARnvEnNUUnozA"}, {"name": "Daikanyama T-Site", "area": "Daikanyama · books", "desc": "Tsutaya&rsquo;s three linked pavilions of books, with the best food and cookbook section in Tokyo and a lounge bar upstairs. Open until 10 p.m.", "pid": "ChIJgfjQvk-LGGARqVwq1_ra-dY"}]
+  }
 };
 var DISCOVER_CITIES = ['Tokyo'];
 var DISCOVER_ACTIVE = 'Tokyo';
@@ -507,8 +512,8 @@ function discGm(q){return(q&&q.indexOf('http')===0)?q:'https://maps.google.com/?
 function renderDiscover(){
   var el=document.getElementById('disc');
   var city=DISCOVER_ACTIVE;
-  var sections=DISCOVER[city]||[];
-  var h='<div class="disc-banner"><h2>🗾 Discover '+esc(city)+'</h2><p>Sightseeing · Food &amp; Drink · Shopping</p></div>';
+  var sections=DISCOVER[city]||{};
+  var h='<div class="disc-banner"><h2>🗾 Discover '+esc(city)+'</h2><p>15 sights · 15 shops · each with Maps &amp; Taxi</p></div>';
   if(DISCOVER_CITIES.length>1){
   h+='<div class="disc-city-bar" role="tablist" aria-label="Select city">';
   DISCOVER_CITIES.forEach(function(c){
@@ -537,14 +542,18 @@ function renderDiscover(){
     +'<a class="disc-scherrer-cta" href="https://maps.app.goo.gl/YxU9bZiQoawn7oqy9?g_st=i" target="_blank" rel="noopener">Open the Map →</a>'
     +'<a class="disc-scherrer-ig" href="https://www.instagram.com/alexrivio" target="_blank" rel="noopener">📷 @alexrivio</a>'
     +'</div></div>';
-  sections.forEach(function(section){
-    h+='<div class="disc-card"><div class="disc-card-head"><div class="disc-card-head-title">'+esc(section.cat)+'</div></div><div class="disc-card-body">';
-    section.items.forEach(function(item){
-      var subHtml=item[2]?'<div class="disc-item-sub">'+esc(item[2])+'</div>':'';
-      h+='<a class="disc-item" href="'+discGm(item[1])+'" target="_blank" rel="noopener">'
-        +'<div class="disc-item-info"><div class="disc-item-name">'+esc(item[0])+'</div>'+subHtml+'</div>'
-        +'<div class="disc-arrow">→</div></a>';
-    });
+  function dItem(it){
+    var u='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(it.name)+'&query_place_id='+it.pid;
+    return '<div class="disc-item"><div class="disc-item-info"><div class="disc-item-name">'+esc(it.name)+'</div>'
+      +'<div class="disc-item-area">'+esc(it.area)+'</div><div class="disc-item-desc">'+it.desc+'</div>'
+      +'<div class="disc-item-btns"><a class="disc-btn pri" href="'+u+'" target="_blank" rel="noopener">📍 Maps</a>'
+      +(JA_DIR[it.name]?'<button type="button" class="disc-btn tx-btn" onclick="showTaxi(this.dataset.n)" data-n="'+esc(it.name)+'">🚕 Taxi</button>':'')
+      +'</div></div></div>';
+  }
+  [['Sightseeing',sections.sights],['Shopping',sections.shops]].forEach(function(sec){
+    if(!sec[1]||!sec[1].length)return;
+    h+='<div class="disc-card"><div class="disc-card-head"><div class="disc-card-head-title">'+sec[0]+'</div><div class="disc-count">'+sec[1].length+'</div></div><div class="disc-card-body">';
+    sec[1].forEach(function(it){h+=dItem(it);});
     h+='</div></div>';
   });
   el.innerHTML=h;

@@ -187,7 +187,7 @@ footer a{color:var(--brand)}
 <body>
 
 <header id="hdr">
-  <div><div class="hdr-name">Achefabroad</div><div class="hdr-sub">Tokyo · Tour 4 · v7</div></div>
+  <div><div class="hdr-name">Achefabroad</div><div class="hdr-sub">Tokyo · Tour 4 · v8</div></div>
   <div><div id="clock">--:--</div><div id="trip-lbl">Loading…</div></div>
 </header>
 
@@ -311,7 +311,7 @@ var DAYS = [
      url:'https://www.google.com/maps/search/?api=1&query=Tonkatsu%20Kenshin&query_place_id=ChIJLbzE-cuNGGARQRJYDZLuGdk',
      desc:'One of Tokyo\'s finest expressions of the beloved panko-breaded pork cutlet. Premium pork, breadcrumbs fried in carefully maintained oil at the precise temperature — the result is a crust of extraordinary lightness encasing meat of real depth and flavour. Served with hand-ground sesame, miso soup and rice, this is comfort food elevated to something quietly extraordinary.',
      note:null},
-    {time:'19:00',name:'Sukiyaki Hiyama',type:'Dinner · Sukiyaki',stars:0,requested:true,
+    {time:'19:00',name:'Sukiyaki Hiyama',type:'Dinner · Sukiyaki',stars:0,
      url:'https://www.google.com/maps/search/?api=1&query=Hiyama%20Sukiyaki%20Kappo&query_place_id=ChIJiduS1U-JGGARr0XI-XOSodw',
      desc:'Hiyama is one of Tokyo\'s most storied beef purveyors. Thinly sliced wagyu is simmered at the table in soy, mirin and sugar, then lifted through a silken raw egg. Convivial by nature, deeply satisfying in every sense — and a perfect dinner for a group.',
      note:null}
@@ -352,12 +352,12 @@ var DAYS = [
      desc:'Tonight\'s dinner is at the debut restaurant of British chef Daniel Calvert, who took Sézanne at the Four Seasons Marunouchi to three Michelin stars and No. 1 on Asia\'s 50 Best Restaurants. Chez Calvert, his first independent restaurant, opened in October 2026 in Azabudai Hills, with a minimalist interior by architect John Pawson. Expect classical French technique applied to Japan\'s finest seasonal produce. The group will be seated across two tables.',
      note:'Strict dress code: smart attire required — no jeans and no trainers (including smart jeans and smart trainers).'}
   ]},
-  {id:7,date:'2026-12-05',name:'Saturday 5 December',sub:'Sushi Mizukami — Tour Ends',
+  {id:7,date:'2026-12-05',name:'Saturday 5 December',sub:'Sushi Sumito — Tour Ends',
    intro:'The final day. Thank you for joining us — we hope Tokyo stays with you long after you leave.',
    stops:[
-    {time:'12:00',name:'Sushi Mizukami',type:'Farewell Lunch · Sushi',stars:0,
-     url:'https://www.google.com/maps/search/?api=1&query=Sushi%20Mizukami&query_place_id=ChIJAQB8l2-MGGARdmIv3bkhGyg',
-     desc:'The tour closes at the sushi counter — a final omakase where the season\'s finest fish is handled with quiet precision. A fitting last taste of Tokyo before you go.',
+    {time:'12:00',name:'Sushi Sumito',type:'Farewell Lunch · Sushi',stars:0,
+     url:'https://www.google.com/maps/search/?api=1&query=Hakozakicho%20Sumito&query_place_id=ChIJ6yDKuqSJGGARmzeyDHRbf1k',
+     desc:'The tour closes at Hakozakicho Sumito, an intimate basement sushi counter in Nihonbashi listed in the Michelin Guide Tokyo. The chef puts ingredient quality above all: he visits the market even on days he is not buying, and his close ties with the wholesalers show most clearly in the tuna, served as a toro nori roll followed by akami, chutoro and otoro nigiri. The rice is adjusted in temperature for each topping, and light and dark nikiri are used to bring out each fish. A fitting last taste of Tokyo before you go.',
      note:'No fragrance at the counter.'}
   ]}
 ];
@@ -449,7 +449,7 @@ var JA_DIR = {
   'Torichatarou':{ name:'とり茶太郎', en:'Tori Chataro', addr:'〒150-0032 東京都渋谷区鶯谷町7-12 TAKビル 1F', tel:'+81364160364', pid:'ChIJYS0Kb1qLGGARgjyZa8cfFr4' },
   'Soba Ishii':{ name:'そばまえ いしい', en:'Soba Ishii', addr:'〒162-0825 東京都新宿区神楽坂6-8', tel:'+81362650617', pid:'ChIJLY-0obWNGGAR5Zmk30zU4vQ' },
   'Chez Calvert':{ name:'シェ・カルヴェ', en:'Chez Calvert', addr:'〒106-0041 東京都港区麻布台1-1-2 ヒルズ レジデンスB 2階', tel:'+81345003505', pid:'ChIJKxie0LCLGGAR6-AhYCCWOX0' },
-  'Sushi Mizukami':{ name:'鮨 みずかみ', en:'Sushi Mizukami', addr:'〒102-0082 東京都千代田区一番町3-8', tel:'+81332300326', pid:'ChIJAQB8l2-MGGARdmIv3bkhGyg' }
+  'Sushi Sumito':{ name:'箱崎町 すみと', en:'Hakozakicho Sumito', addr:'〒103-0015 東京都中央区日本橋箱崎町27-2 渡菊第三ビル B1F', tel:'+81335272220', pid:'ChIJ6yDKuqSJGGARmzeyDHRbf1k' }
 };
 /* Verified Google Place IDs (Nov 2026), keyed by stop name: [Google name, place_id] */
 var PLACE_IDS = {
@@ -465,7 +465,7 @@ var PLACE_IDS = {
   "Torichatarou":["Tori Chataro", "ChIJYS0Kb1qLGGARgjyZa8cfFr4"],
   "Soba Ishii":["Sobamae Ishii", "ChIJLY-0obWNGGAR5Zmk30zU4vQ"],
   "Chez Calvert":["Chez Calvert", "ChIJKxie0LCLGGAR6-AhYCCWOX0"],
-  "Sushi Mizukami":["Sushi Mizukami", "ChIJAQB8l2-MGGARdmIv3bkhGyg"]
+  "Sushi Sumito":["Hakozakicho Sumito", "ChIJ6yDKuqSJGGARmzeyDHRbf1k"]
 };
 function gm(s){if(s.url&&s.url.indexOf('maps.app.goo.gl')>-1)return s.url;var p=PLACE_IDS[s.name];if(p)return 'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(p[0])+'&query_place_id='+p[1];return s.url||'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(s.name+' Tokyo');}
 function nav(s){var p=PLACE_IDS[s.name];if(p)return 'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(p[0])+'&destination_place_id='+p[1]+'&travelmode=driving';return gm(s);}
